@@ -11,15 +11,15 @@ parse_masshunter_csv <- function(filename){
     dplyr::rename(metadata = V1) %>%
     dplyr::select(c(metadata, block.id)) %>%
     # extract metadata
-    dplyr::mutate(file = str_extract(metadata, "[:graph:]+\\.d"),
-           polarity = str_sub(metadata, 3L ,3L),
-           type = str_extract(metadata, "(MRM|EIC|SIM)"),
-           EIC = str_extract(metadata, "(?<=EIC\\()[:graph:]+(?=\\))"),
-           SIM = str_extract(metadata, "(?<=SIM\\()[:graph:]+(?=\\))"),
-           Frag = str_extract(metadata, "(?<=Frag=)[:graph:]+(?=V)"),
-           CID = str_extract(metadata, "(?<=CID@)[:graph:]+"),
-           precursor.ion = str_extract(metadata, "(?<=\\()[:graph:]+(?= -)"),
-           product.ion = str_extract(metadata, "(?<=> )[:graph:]+(?=\\))")
+    dplyr::mutate(file = stringr::str_extract(metadata, "[:graph:]+\\.d"),
+           polarity = stringr::str_sub(metadata, 3L ,3L),
+           type = stringr::str_extract(metadata, "(MRM|EIC|SIM)"),
+           EIC = stringr::str_extract(metadata, "(?<=EIC\\()[:graph:]+(?=\\))"),
+           SIM = stringr::str_extract(metadata, "(?<=SIM\\()[:graph:]+(?=\\))"),
+           Frag = stringr::str_extract(metadata, "(?<=Frag=)[:graph:]+(?=V)"),
+           CID = stringr::str_extract(metadata, "(?<=CID@)[:graph:]+"),
+           precursor.ion = stringr::str_extract(metadata, "(?<=\\()[:graph:]+(?= -)"),
+           product.ion = stringr::str_extract(metadata, "(?<=> )[:graph:]+(?=\\))")
     )
 
   # left_join metadata to data rows and remove temporarily added key column
@@ -30,7 +30,7 @@ parse_masshunter_csv <- function(filename){
 
   # remove empty cols, e.g. MRMs if all chromatograms are EIC
   out.df <- Filter(function(x) !all(is.na(x)), joined.df) %>%
-    mutate(time = as.numeric(time),
+    dplyr::mutate(time = as.numeric(time),
            intensity = as.numeric(intensity))
   return(out.df)
 }
