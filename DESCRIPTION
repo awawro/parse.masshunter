@@ -8,7 +8,7 @@ Authors@R:
            email = "adamwawro@wp.pl",
            comment = c(ORCID = "0000-0002-1767-6635"))
 Description: This package contains functions for parsing the .csv file output from Agilent MassHunter Qualitative Analysis software and extracting the metadata. It returns a long format tibble suitable for further analysis in R and plotting.
-License: use_gpl3_license()
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
