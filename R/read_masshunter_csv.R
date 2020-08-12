@@ -2,7 +2,6 @@
 #'
 #' @param filename A string with the path of the relevant .csv file.
 #' @return A data frame with three columns.
-#' @import dplyr readr
 read_masshunter_csv <- function(filename){
   raw.df <- readr::read_csv(filename, col_names = c("V1", "V2", "V3"), col_types = "ccc")
 

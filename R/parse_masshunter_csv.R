@@ -2,7 +2,6 @@
 #'
 #' @param filename A string with the path of the relevant .csv file.
 #' @return A data frame with three columns.
-#' @import dplyr tidyr stringr
 #' @export
 parse_masshunter_csv <- function(filename){
   raw.df<- read_masshunter_csv(filename)
